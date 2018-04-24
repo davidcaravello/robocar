@@ -56,7 +56,7 @@ def handle_json(root, file):
         contents = f.read()
     
     json_parsed = json.loads(contents)
-    new_json_val = root + '.' + pad_num_beg(json_parsed[JSON_KEY])
+    new_json_val = os.path.basename(root) + '.' + pad_num_beg(json_parsed[JSON_KEY])
 
     if new_json_val.startswith('.\\'):
         new_json_val = new_json_val[2:]
