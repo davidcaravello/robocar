@@ -24,3 +24,5 @@ Processing Files in [~/d2/data/tub_9_18-04-23]
 ```
 
 An `out/` directory will be created in the current working directory containing every file from the `tub*` directories (prefixed with the tub name).  The contents of all the .json files will also be modified to point to the new name of the associated file(s).
+
+Numbers within filenames will also be left padded with `0`'s to fix any processing issues that may result in sorting the filenames alphabetically.
