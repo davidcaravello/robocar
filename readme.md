@@ -13,7 +13,7 @@ drwxr-xr-x 1 David 197121        0 Apr 23 13:18 tub_8_18-04-23/
 drwxr-xr-x 1 David 197121        0 Apr 23 13:21 tub_9_18-04-23/
 
 $ python -u tubcon.py ~/d2/data
-Processing Files in [~/dt/data/tub_11_18-04-23]
+Processing Files in [~/d2/data/tub_11_18-04-23]
 ...
 Processing Files in [~/d2/data/tub_16_18-04-23]
 ...
