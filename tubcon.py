@@ -34,7 +34,7 @@ def pad_num_mid(filename):
 
 def contruct_filename(root, filename, pad_func):
     newfilename = pad_func(filename)
-    newfile = outdir + os.path.sep + os.path.basename(root) + '.' + newfilename
+    newfile = outdir + os.path.sep + os.path.basename(root) + '-' + newfilename
     newfile = os.path.abspath(newfile)
 
     return newfile
@@ -50,21 +50,28 @@ def handle_image(root, file):
 
 def handle_json(root, file):
     curfile = os.path.abspath(root + os.path.sep + file)
-    newfile = contruct_filename(root, file, pad_num_mid)
 
     with open(curfile, 'rt') as f:
         contents = f.read()
     
     json_parsed = json.loads(contents)
-    new_json_val = os.path.basename(root) + '.' + pad_num_beg(json_parsed[JSON_KEY])
+    new_json_val = os.path.basename(root) + '-' + pad_num_beg(json_parsed[JSON_KEY])
 
     if new_json_val.startswith('.\\'):
         new_json_val = new_json_val[2:]
 
     json_parsed[JSON_KEY] = new_json_val
 
+    #newfile = contruct_filename(root, file, pad_num_mid)
+    newfilename = pad_num_mid(file)
+    newfilename = newfilename[:-5] # hack remove json
+    newfile = outdir + os.path.sep + newfilename + '_' + os.path.basename(root) + '.json'
+    newfile = os.path.abspath(newfile)
+
     with open(newfile, 'wt') as f:
         f.write(json.dumps(json_parsed))
+
+# record_$$$_file.json
 
 def main():
     # Ensure the output directory exists
