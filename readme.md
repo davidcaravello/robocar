@@ -1,0 +1,3 @@
+`tubcon.py` takes a single argument: the path where the tub* directories are stored resulting from driving a (donkeycar)[http://www.donkeycar.com/]
+
+An `out/` directory will be created in the current working directory containing every file from the `tub*` directories (prefixed with the tub name).  The contents of all the .json files will also be modified to point to the new name of the associated file(s).
