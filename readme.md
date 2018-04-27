@@ -13,13 +13,15 @@ drwxr-xr-x 1 David 197121        0 Apr 23 13:18 tub_8_18-04-23/
 drwxr-xr-x 1 David 197121        0 Apr 23 13:21 tub_9_18-04-23/
 
 $ python -u tubcon.py ~/d2/data
-Processing Files in [~/d2/data/tub_11_18-04-23]
-...
-Processing Files in [~/d2/data/tub_16_18-04-23]
-...
-Processing Files in [~/d2/data/tub_8_18-04-23]
-...
-Processing Files in [~/d2/data/tub_9_18-04-23]
+Skipping files in [data] (doesn't start with 'tub')
+Discovering files in [~/d2/data/tub_1_18-04-24]
+Discovering files in [~/d2/data/tub_2_18-04-24]
+Discovering files in [~/d2/data/tub_3_18-04-24]
+Discovering files in [~/d2/data/tub_4_18-04-24]
+Discovering files in [~/d2/data/tub_5_18-04-24]
+Found [10536] records in the tubs
+Creating meta.json
+[ 100.00%][10536/10536] Processing [data\tub_5_18-04-24\record_3599.json]
 ...
 ```
 
