@@ -49,7 +49,7 @@ def consolidate(tubs, outdir):
     max_digits = len(str(record_count)) + 1
     record_filename_template = 'record_{:0>' + str(max_digits) + '}.json'
     image_filename_template = '{:0>' + str(max_digits) + '}_cam-image_array_.jpg'
-    progress_template = '\r[{:>7.2f}%][{:>' + str(max_digits-1) + '}/{}] Processing [{}]       '
+    progress_template = '\r[{:>6.2f}%][{:>' + str(max_digits-1) + '}/{}] Processing [{}]       '
 
     record_index = 0
     for tub_dir in tubs.keys():
@@ -60,28 +60,27 @@ def consolidate(tubs, outdir):
             src_metafile = os.path.join(tub_dir, 'meta.json')
             shutil.copy(src_metafile, dst_metafile)
 
+        # Create the new record files
         records = tubs[tub_dir]
-        # print('\nProcessing [{}] records in [{}] - beginning index [{}]'.format(len(records), tub_dir, record_index+1))
-
-        for i, record in enumerate(records):
+        for record in records:
             record_index += 1
 
             record_filename = record[0]
             record_json = record[1]
 
-            image_filename = record[1][JSON_KEY]
-
+            # Write the new record json file
             new_record_filename = record_filename_template.format(record_index)
             new_image_filename = image_filename_template.format(record_index)
-
             record_json[JSON_KEY] = new_image_filename
             with open(outdir + os.path.sep + new_record_filename, 'wt') as f:
                 f.write(json.dumps(record_json))
 
+            # Write the new image file
+            image_filename = record_json[JSON_KEY]
             src_img_filename = os.path.join(tub_dir, image_filename)
             dst_img_file = os.path.join(outdir, new_image_filename)
             shutil.copy(src_img_filename, dst_img_file)
-            # print('[{}] -> [{}] and [{}] -> [{}]'.format(record_filename, new_record_filename, image_filename, new_image_filename))
+
             print(progress_template.format((record_index / record_count)*100, record_index, record_count, os.path.join(tub_dir, record_filename)), end='')
     
     print('\nFinished creating records in [{}]'.format(os.path.abspath(outdir)))
