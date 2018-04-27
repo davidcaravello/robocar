@@ -21,10 +21,6 @@ def get_tubs_to_process(indir):
                 # Assumption, is a meta.json per tub, and they are all exactly the same
                 continue
 
-            elif file.endswith(".jpg"):
-                # Will get jpg file details from json records
-                continue
-
             elif file.endswith('.json'):
                 with open(root + os.path.sep + file, 'rt') as f:
                     json_contents = json.loads(f.read())
@@ -67,6 +63,7 @@ def consolidate(tubs, outdir):
 
             record_filename = record[0]
             record_json = record[1]
+            image_filename = record_json[JSON_KEY]
 
             # Write the new record json file
             new_record_filename = record_filename_template.format(record_index)
@@ -76,11 +73,11 @@ def consolidate(tubs, outdir):
                 f.write(json.dumps(record_json))
 
             # Write the new image file
-            image_filename = record_json[JSON_KEY]
             src_img_filename = os.path.join(tub_dir, image_filename)
             dst_img_file = os.path.join(outdir, new_image_filename)
             shutil.copy(src_img_filename, dst_img_file)
 
+            # print progress
             print(progress_template.format((record_index / record_count)*100, record_index, record_count, os.path.join(tub_dir, record_filename)), end='')
     
     print('\nFinished creating records in [{}]'.format(os.path.abspath(outdir)))
