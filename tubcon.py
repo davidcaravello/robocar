@@ -5,10 +5,12 @@ import re
 import sys
 
 outdir = 'out/'
-PAD_FORMAT = '{:0>10}'
+PAD_FORMAT = '{:0>8}'
 JSON_KEY = 'cam/image_array'
 
 # NUMS_REGEX = re.compile('([0-9]+)')
+
+tubcount = 1000
 
 def pad_num_beg(filename):
     num = ''
@@ -63,9 +65,10 @@ def handle_json(root, file):
     json_parsed[JSON_KEY] = new_json_val
 
     #newfile = contruct_filename(root, file, pad_num_mid)
-    newfilename = pad_num_mid(file)
+    global tubcount
+    newfilename = str(tubcount) + pad_num_mid(file)
     newfilename = newfilename[:-5] # hack remove json
-    newfile = outdir + os.path.sep + newfilename + '_' + os.path.basename(root) + '.json'
+    newfile = outdir + os.path.sep + newfilename + '.json'
     newfile = os.path.abspath(newfile)
 
     with open(newfile, 'wt') as f:
@@ -89,6 +92,8 @@ def main():
             continue
 
         print('\nProcessing Files in [{}]'.format(root))
+        global tubcount
+        tubcount += 1000
         for file in files:
             if file == 'meta.json':
                 handle_meta(root, file)
