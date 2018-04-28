@@ -14,14 +14,13 @@ drwxr-xr-x 1 David 197121        0 Apr 23 13:21 tub_9_18-04-23/
 
 $ python -u tubcon.py ~/d2/data
 Skipping files in [data] (doesn't start with 'tub')
-Discovering files in [~/d2/data/tub_1_18-04-24]
-Discovering files in [~/d2/data/tub_2_18-04-24]
-Discovering files in [~/d2/data/tub_3_18-04-24]
-Discovering files in [~/d2/data/tub_4_18-04-24]
-Discovering files in [~/d2/data/tub_5_18-04-24]
+Discovering files in [~/d2/data/tub_11_18-04-23]
+Discovering files in [~/d2/data/tub_16_18-04-23]
+Discovering files in [~/d2/data/tub_8_18-04-23]
+Discovering files in [~/d2/data/tub_9_18-04-23]
 Found [10536] records in the tubs
 Creating meta.json
-[ 100.00%][10536/10536] Processing [data\tub_5_18-04-24\record_3599.json]
+[ 100.00%][10536/10536] Processing [data\tub_11_18-04-23\record_3599.json]
 ...
 ```
 
